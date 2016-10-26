@@ -1,0 +1,188 @@
+
+<md-content>
+  <div layout="row" style="margin-top:20px;" layout-align="space-between center">
+    <div layout="column" flex class="cabeceraAsistencia">
+
+      <div layout="row" layout-align="space-between start">
+        <h2>Tomando notassss</h2>
+        <div layout="column" layout-align="center center">
+          <div layout="row" layout-align="start center">
+            <img src="/dist/icons/ic_chevron_left.svg" ng-click="notas.subtractDay();" style="cursor: pointer;"></img>
+            <!-- <md-datepicker ng-model="notas.getterSetterDate" md-placeholder="Fecha" ng-change="notas.dateChanged()" ng-model-options=" {getterSetter: true }"></md-datepicker> -->
+            <md-datepicker ng-model="notas.date" md-placeholder="Fecha" ng-change="notas.dateChanged()"></md-datepicker>
+            <img src="/dist/icons/ic_chevron_right.svg" ng-click="notas.addDay();" style="cursor: pointer;padding-left: 15px;"></img>
+          </div>
+          <span>{{notas.quarter}} Trimestre</span>
+        </div>
+        <div></div>
+      </div>
+     <md-radio-group ng-model="data.group1" layout ="row" style="margin-left:20px;" layout-align="start center" ng-disabled="notas.disableEdit">
+       <md-radio-button value="Apple99">Falta normal</md-radio-button>
+       <md-radio-button value="Banana88"> Falta contraturno </md-radio-button>
+     </md-radio-group>
+     <span>El curso tiene {{notas.cursos[0].integrantes.length}} alumnos</span>
+     <md-checkbox ng-model="int.presente" aria-label="Checkbox 1" style="margin-left:10px;" ng-disabled="notas.disableEdit">
+       No hubo actividad en el dia de la fecha
+     </md-checkbox></p>
+     <div layout="row">
+       <md-input-container>
+         <label>Materias</label>
+         <md-select ng-model="notas.selectedAssign"
+                    md-on-close="notas.clearSearchTermMat()"
+                    data-md-container-class="selectdemoSelectHeader">
+           <md-select-header class="demo-select-header">
+             <input ng-model="notas.searchTermAssign"
+                    type="search"
+                    placeholder="Buscar materia"
+                    class="demo-header-searchbox md-text">
+           </md-select-header>
+           <md-optgroup label="materias">
+             <md-option ng-value="mat" ng-repeat="mat in notas.materias |
+               filter:notas.searchTermAssign">{{mat}}</md-option>
+           </md-optgroup>
+         </md-select>
+       </md-input-container>
+       <md-input-container>
+         <label>Profesores</label>
+         <md-select ng-model="notas.prof"
+                    md-on-close="notas.clearSearchTermProf()"
+                    data-md-container-class="selectdemoSelectHeader">
+           <md-select-header class="demo-select-header">
+             <input ng-model="notas.searchTermProf"
+                    type="search"
+                    placeholder="Buscar materia"
+                    class="demo-header-searchbox md-text">
+           </md-select-header>
+           <md-optgroup label="profesores">
+             <md-option ng-value="mat2" ng-repeat="mat2 in notas.profesores |
+               filter:notas.searchTermProf">{{mat2}}</md-option>
+           </md-optgroup>
+         </md-select>
+       </md-input-container>
+    </div>
+    </div>
+    <div style="margin-right: 20px;cursor: pointer;" ng-click="notas.enableEdit()">
+     <img src="/dist/icons/ic_edit.svg"></img>
+    </div>
+
+
+ </div>
+  <md-tabs md-dynamic-height md-border-bottom>
+    <md-tab label="{{c.label}}" ng-repeat="c in notas.cursos">
+      <md-content class="md-padding">
+<!--
+        mdt-row="{
+                            data: c.integrantes,
+                            'column-keys': [
+                                'name',
+                                'nt1',
+                                'nt2',
+                                'nt3',
+                                'pc',
+                                'nt',
+                                'pt',
+                                'gt8'
+                            ]
+                            }" -->
+
+        <!-- <mdt-table
+                            selectable-rows="true"
+                            >
+          <mdt-header-row>
+            <mdt-column align-rule="left" editable-field="smallEditDialog">Alumno</mdt-column>
+            <mdt-column align-rule="right" editable-field="textInput">Nota</mdt-column>
+            <mdt-column align-rule="right">Nota</mdt-column>
+            <mdt-column align-rule="right">Nota</mdt-column>
+            <mdt-column align-rule="right">PC</mdt-column>
+            <mdt-column align-rule="right">NT</mdt-column>
+            <mdt-column align-rule="right">PT</mdt-column>
+            <mdt-column align-rule="right">>8</mdt-column>
+          </mdt-header-row>
+          <mdt-row ng-repeat="int in c.integrantes">
+            <mdt-cell editable-field="smallEditDialog">{{int.name}}</mdt-cell>
+            <mdt-cell editable-field="smallEditDialog">{{int.nt1}}</mdt-cell>
+            <mdt-cell editable-field="smallEditDialog">{{int.nt2}}</mdt-cell>
+            <mdt-cell editable-field="smallEditDialog">{{int.nt3}}</mdt-cell>
+            <mdt-cell editable-field="smallEditDialog">{{int.pc}}</mdt-cell>
+            <mdt-cell editable-field="smallEditDialog">{{int.nt}}</mdt-cell>
+            <mdt-cell editable-field="smallEditDialog">{{int.pt}}</mdt-cell>
+            <mdt-cell editable-field="smallEditDialog">{{int.gt8}}</mdt-cell>
+          </mdt-row>
+        </mdt-table> -->
+
+        <md-table-container>
+          <table md-table md-row-select multiple ng-model="notas.selected" md-progress="promise">
+            <thead md-head md-order="query.order" md-on-reorder="getDesserts">
+              <tr md-row>
+                <th md-column><span>Banco</span></th>
+                <th md-column><span>Nombre</span></th>
+                <th md-column md-numeric ng-show="notas.grande"><span>PT Anterior</span></th>
+                <th md-column md-numeric><span>Nota</span></th>
+                <th md-column md-numeric>Nota</th>
+                <th md-column md-numeric>Nota</th>
+                <th md-column md-numeric ng-show="notas.grande">PC</th>
+                <th md-column md-numeric>NT</th>
+                <th md-column md-numeric>PT</th>
+                <th md-column md-numeric ng-show="notas.grande">PG</th>
+                <th md-column md-numeric ng-show="notas.grande">PT3-21</th>
+              </tr>
+            </thead>
+            <tbody md-body>
+              <tr md-row ng-repeat="int in c.integrantes">
+                <td md-cell>
+                  {{int.banco}}
+                </td>
+                <td md-cell>
+                  {{int.name}}
+                </td>
+                <td md-cell ng-show="notas.grande">
+                  {{int.pta}}
+                </td>
+                <td md-cell>
+                  <md-select ng-model="ctrl.userState" ng-disabled="notas.disableEdit" aria-label="algo">
+                    <md-option><em>Sin nota</em></md-option>
+                    <md-option ng-repeat="state in notas.notas" ng-value="state.nt">
+                      {{state.nt}}
+                    </md-option>
+                  </md-select>
+                </td>
+                <td md-cell>
+                  <md-select ng-model="ctrl.userState2" ng-disabled="notas.disableEdit" aria-label="algo2">
+                    <md-option><em>Sin nota</em></md-option>
+                    <md-option ng-repeat="state in notas.notas" ng-value="state.nt">
+                      {{state.nt}}
+                    </md-option>
+                  </md-select>
+                </td>
+                <td md-cell>
+                  <md-select ng-model="ctrl.userState3" ng-disabled="notas.disableEdit" aria-label="alg3">
+                    <md-option><em>Sin nota</em></md-option>
+                    <md-option ng-repeat="state in notas.notas" ng-value="state.nt">
+                      {{state.nt}}
+                    </md-option>
+                  </md-select>
+                </td>
+                <td md-cell ng-show="notas.grande">
+                  {{int.pc}}
+                </td>
+                <td md-cell>
+                  {{int.nt}}
+                </td>
+                <td md-cell>
+                  {{int.pt}}
+                </td>
+                <td md-cell ng-show="notas.grande">
+                  {{int.pg}}
+                </td>
+                <td md-cell ng-show="notas.grande">
+                  {{int.pt3}}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </md-table-container>
+
+      </md-content>
+    </md-tab>
+  </md-tabs>
+</md-content>

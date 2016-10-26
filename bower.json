@@ -1,0 +1,24 @@
+{
+  "name": "maquetaYacare",
+  "version": "0.0.0",
+  "authors": [
+    "Alejandro Biagetti <anbiagetti@gmail.com>"
+  ],
+  "description": "maqueta de yacare",
+  "main": "index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.5.8",
+    "angular-material": "~1.1.1",
+    "angular-ui-router": "~0.3.1",
+    "mdDataTable": "~2.0.1",
+    "angular-material-data-table": "~0.10.9"
+  }
+}

@@ -1,0 +1,151 @@
+<div style="overflow:auto" layout="column">
+
+  <div>
+
+    <form ng-submit="buscar()" layout="row" layout-align="center center" layout-padding ng-cloak style="max-height:100%">
+        <!-- <form layout="row" layout-align="center center" layout-padding ng-cloak style="max-height:100%"> -->
+          <div layout="row" class="search-input">
+            <div flex layout="column" layout-align="center center">
+              <div layout="row" layout-align="center center" class="md-search-input-container">
+                <input ng-model="searchInput" type="text" placeholder="Buscar usuarios" class="buscador">
+                <md-button class="search-dialog-button" ng-click="vm.toogleSearchOptions('visible')">
+                  <md-icon class="material-icons icon-search-options" aria-label="Buscar" style="color:black">arrow_drop_down</md-icon>
+                </md-button>
+              </div>
+              <div ng-if="vm.searchDialog.visible" class="advanceSearch search-input md-whiteframe-2dp" flex="75">
+
+
+                <!-- <h2>FILTROS</h2> -->
+
+
+                  <div layout="row">
+                    <fieldset class="standard">
+                      <legend>Division</legend>
+                      <md-checkbox ng-model="data.cb1" aria-label="Checkbox 1">
+                        A
+                      </md-checkbox>
+                      <md-checkbox ng-model="data.cb2" aria-label="Checkbox 1">
+                        B
+                      </md-checkbox>
+                      <md-checkbox ng-model="data.cb3" aria-label="Checkbox 1">
+                        C
+                      </md-checkbox>
+                      <md-checkbox ng-model="data.cb4" aria-label="Checkbox 1">
+                        D
+                      </md-checkbox>
+                    </fieldset>
+                  </div>
+
+                  <div layout="row">
+                    <fieldset class="standard">
+                      <legend>Curso</legend>
+                      <md-checkbox ng-model="data.cb11" aria-label="Checkbox 1">
+                        1
+                      </md-checkbox>
+                      <md-checkbox ng-model="data.cb22" aria-label="Checkbox 1">
+                        2
+                      </md-checkbox>
+                      <md-checkbox ng-model="data.cb33" aria-label="Checkbox 1">
+                        3
+                      </md-checkbox>
+                      <md-checkbox ng-model="data.cb44" aria-label="Checkbox 1">
+                        4
+                      </md-checkbox>
+                      <md-checkbox ng-model="data.cb55" aria-label="Checkbox 1">
+                        5
+                      </md-checkbox>
+                      <md-checkbox ng-model="data.cb66" aria-label="Checkbox 1">
+                        6
+                      </md-checkbox>
+                      <md-checkbox ng-model="data.cb77" aria-label="Checkbox 1">
+                        7
+                      </md-checkbox>
+                    </fieldset>
+                  </div>
+
+                  <div layout="row">
+                    <fieldset class="standard">
+                      <legend>Turno</legend>
+                      <md-checkbox ng-model="data.cb111" aria-label="Checkbox 1">
+                        Tarde
+                      </md-checkbox>
+                      <md-checkbox ng-model="data.cb222" aria-label="Checkbox 1">
+                        Mañana
+                      </md-checkbox>
+                    </fieldset>
+                  </div>
+
+                  <div layout="row">
+                    <fieldset class="standard">
+                      <legend>Rol</legend>
+                      <md-checkbox ng-model="data.cb1111" aria-label="Checkbox 1">
+                        Tutor
+                      </md-checkbox>
+                      <md-checkbox ng-model="data.cb2222" aria-label="Checkbox 1">
+                        Estudiante
+                      </md-checkbox>
+                    </fieldset>
+                  </div>
+
+              </div>
+            </div>
+
+          </div>
+          <md-button hide-xs type="submit" class="md-raised search-button" aria-label="Buscar">
+            <md-icon class="material-icons" aria-label="Buscar">search</md-icon>
+          </md-button>
+        </form>
+  </div>
+
+  <div layout="row">
+
+    <md-content class="person-container">
+      <md-card class="md-whiteframe-2dp" ng-repeat="arr in vm.arrayPerson track by $index" ng-class="{'task-focus md-whiteframe-6dp cardAbierto' :$index==selected}">
+        <md-card-content flex>
+          <div class="person-header" layout="row" layout-align="space-between center" ng-click="vm.seleccionarAle($index)">
+            <img class="avatar" src="{{vm.foto}}">
+            <span flex="20">
+              {{arr.personalInformation.givenNames[0]}}
+              {{arr.personalInformation.surnames[0]}}
+            </span>
+            <span flex="20">Edad {{arr.personalInformation.birth.age}}</span>
+            <span flex="20">DNI {{arr.personalInformation.identityDocuments.mainIdentity.identityNumber}}</span>
+            <span flex="20" ng-if="arr.students">Tutor</span>
+            <span flex="20" ng-if="!arr.students">Estudiante</span>
+          </div>
+          <div  layout="column" ng-if="vm.selected==$index"  style="margin-left:-16px; margin-bottom: -10px;">
+            <div layout="row">
+              <div layout="column" flex="50">
+                <div class="level1" layout="row">
+                  <div  class="level1">
+                    <img class="profile" src="{{arr.foto}}">
+                  </div>
+                  <div  class="level1">
+                    <h3>{{arr.personalInformation.givenNames[0]}}
+                    {{arr.personalInformation.surnames[0]}}</h3>
+                    <h3>{{arr.personalInformation.identityDocuments.mainIdentity.identityNumber}}</h3>
+                  </div>
+                </div>
+                <div class="level1">
+                  {{arr.personalInformation.givenNames[0]}} {{arr.personalInformation.surnames[0]}}, hombre naciedo en Argentina de nacionalidad argentino con domicilio en colon 500 de la ciudad de cordoba, Argentina
+                  <br>
+                  <br>
+                  <div layout="row" layout-align="start center"><img src="/dist/icons/ic_phone.svg"></img><span> 55663311<span></div>
+                  <br>
+                  <div layout="row" layout-align="start center"><img src="/dist/icons/ic_email.svg"></img><span> 55663311<span></div>
+                </div>
+              </div>
+            <div layout="column" flex="50">
+              <div flex="50" layout="column" layout-align="center center">
+                <md-progress-circular class="md-warn md-hue-3" md-diameter="70"></md-progress-circular>
+              </div>
+              <div flex="50" layout="column" layout-align="center center">
+                <md-progress-circular class="md-warn md-hue-3" md-diameter="70"></md-progress-circular>
+              </div>
+            </div>
+          </div>
+        </md-card-content>
+      </md-card>
+    </md-content>
+  </div>
+</div>

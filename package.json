@@ -1,0 +1,19 @@
+{
+  "name": "maquetaYacare",
+  "version": "0.0.0",
+  "description": "maqueta de yacare",
+  "main": "/server/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ale",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "url": "~0.11.0",
+    "path": "~0.12.7",
+    "connect-redis": "~3.1.0",
+    "express-session": "~1.14.1",
+    "express": "~4.14.0",
+    "request": "~2.75.0"
+  }
+}

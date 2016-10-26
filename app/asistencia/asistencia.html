@@ -1,0 +1,93 @@
+
+<md-content>
+  <div layout="row" style="margin-top:20px;" layout-align="space-between center">
+    <div layout="column" flex class="cabeceraAsistencia">
+
+      <div layout="row" layout-align="space-between start">
+        <h2>Tomando asistenciasss</h2>
+        <div layout="column" layout-align="center center">
+          <div layout="row" layout-align="start center">
+            <img src="/dist/icons/ic_chevron_left.svg" ng-click="asistencia.subtractDay();" style="cursor: pointer;"></img>
+            <!-- <md-datepicker ng-model="asistencia.getterSetterDate" md-placeholder="Fecha" ng-change="asistencia.dateChanged()" ng-model-options=" {getterSetter: true }"></md-datepicker> -->
+            <md-datepicker ng-model="asistencia.date" md-placeholder="Fecha" ng-change="asistencia.dateChanged()"></md-datepicker>
+            <img src="/dist/icons/ic_chevron_right.svg" ng-click="asistencia.addDay();" style="cursor: pointer;padding-left: 15px;"></img>
+          </div>
+          <span>{{asistencia.quarter}} Trimestre</span>
+        </div>
+        <div></div>
+      </div>
+     <md-radio-group ng-model="data.group1" layout ="row" style="margin-left:20px;" layout-align="start center" ng-disabled="asistencia.disableEdit">
+       <md-radio-button value="Apple99">Falta normal</md-radio-button>
+       <md-radio-button value="Banana88"> Falta contraturno </md-radio-button>
+     </md-radio-group>
+     <span>El curso tiene {{asistencia.cursos[0].integrantes.length}} alumnos</span>
+     <md-checkbox ng-model="int.presente" aria-label="Checkbox 1" style="margin-left:10px;" ng-disabled="asistencia.disableEdit">
+       No hubo actividad en el dia de la fecha
+     </md-checkbox></p>
+    </div>
+    <div style="margin-right: 20px;cursor: pointer;" ng-click="asistencia.enableEdit()">
+     <img src="/dist/icons/ic_edit.svg"></img>
+    </div>
+ </div>
+  <md-tabs md-dynamic-height md-border-bottom>
+    <md-tab label="{{c.label}}" ng-repeat="c in asistencia.cursos">
+      <md-content class="md-padding">
+        <!-- <md-list-item>
+          <p>Banco</p>
+          <p>Nombre</p>
+          <p>Falta</p>
+          <p>Presencia</p>
+          <p>Faltas Acumuladas</p>
+          <p>Total Justificadas</p>
+          <p>Total Injustificadas</p>
+          <p>Total Suspenciones</p>
+          <p>Totales</p>
+        </md-list-item> -->
+        <md-list-item ng-repeat="int in c.integrantes">
+          <p flex="10" align="center"> {{int.banco}} </p>
+          <p flex="10" align="center"> {{ int.nombre }}
+            <md-tooltip md-direction="left">
+              {{ int.dni }}
+            </md-tooltip>
+          </p>
+          <p flex="10" align="center" ng-if="$index != 0">
+            <md-input-container>
+              <label>Falta</label>
+              <md-select ng-model="int.falta" ng-disabled="asistencia.disableEdit">
+                <md-option ng-value="0"><em>0</em></md-option>
+                <md-option ng-value="1/4"><em>1/4</em></md-option>
+                <md-option ng-value="2/4"><em>2/4</em></md-option>
+                <md-option ng-value="4/4"><em>4/4</em></md-option>
+              </md-select>
+            </md-input-container>
+          </p>
+          <p flex="10" align="center" ng-if="$index == 0"> {{int.falta}} </p>
+          <p flex="10" align="center" ng-if="$index != 0"><md-checkbox ng-model="int.presente" aria-label="Checkbox 1" ng-disabled="asistencia.disableEdit">
+            <!-- En el colegio -->
+          </md-checkbox></p>
+          <p flex="10" align="center" ng-if="$index == 0"> {{int.presente}} </p>
+          <!-- <p flex="10">
+            <md-radio-group ng-model="data.group1" layout ="row" ng-disabled="asistencia.disableEdit" ng-click="$event.stopPropagation();">
+
+                <md-radio-button value="Banana{{$index}}"> 1/4 </md-radio-button>
+                <md-radio-button value="Banana4{{$index}}"> 2/4 </md-radio-button>
+                <md-radio-button value="Banana3{{$index}}"> 3/4 </md-radio-button>
+                <md-radio-button value="Banana2{{$index}}"> 4/4 </md-radio-button>
+
+            </md-radio-group>
+          </p> -->
+          <p flex="10" align="center"> {{ int.faltaAcumulada }} </p>
+          <p flex="10" align="center"> {{ int.tj }} </p>
+          <p flex="10" align="center" > {{ int.ti }} </p>
+          <p flex="10" align="center"> {{ int.ts }} </p>
+          <p flex="10" align="center"> {{ int.tt }} </p>
+          <!-- <div flex="10" align="center" ng-if="$index > 0"> <div style="height: 25px;background-color: green;" flex layout="row" layout-align="center center"><span style="color:white;">{{int.porcentaje}}%</span></div> </div> -->
+          <div flex="10" align="center" ng-if="$index > 0"> <md-progress-linear md-mode="determinate" value="{{int.porcentaje}}"></md-progress-linear> 25% </div>
+          <p flex="10" align="center" ng-if="$index == 0"> {{int.porcentaje}} </p>
+          <!-- <p></p> -->
+        </md-list-item>
+
+      </md-content>
+    </md-tab>
+  </md-tabs>
+</md-content>
