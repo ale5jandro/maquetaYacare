@@ -10,7 +10,7 @@
     /* @ngInject */
     function userFactory($http, $q) {
 
-        var urlApi = 'http://yacare-dev-api.psi.unc.edu.ar/v1/';
+        var urlApi = 'https://colegios.unc.edu.ar/cnm/api/v1/';
 
 
         var apiFactory = {
