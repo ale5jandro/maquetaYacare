@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app.core', ['ui.router', 'ngMaterial','ngMessages','ngMdIcons', 'md.data.table'])
+        .module('app.core', ['ui.router', 'ngMaterial','ngMessages','ngMdIcons', 'md.data.table', 'ngAnimate'])
 
 
         //

@@ -1,0 +1,150 @@
+
+<md-content>
+  <div layout="row" style="margin-top:20px;" layout-align="space-between center">
+    <div layout="column" flex class="cabeceraAsistencia">
+
+      <div layout="row" layout-align="space-between start">
+        <h2>Tomando sancionessss</h2>
+        <div layout="column" layout-align="center center">
+          <div layout="row" layout-align="start center">
+            <img src="/dist/icons/ic_chevron_left.svg" ng-click="sanciones.subtractDay();" style="cursor: pointer;"></img>
+            <!-- <md-datepicker ng-model="sanciones.getterSetterDate" md-placeholder="Fecha" ng-change="sanciones.dateChanged()" ng-model-options=" {getterSetter: true }"></md-datepicker> -->
+            <md-datepicker ng-model="sanciones.date" md-placeholder="Fecha" ng-change="sanciones.dateChanged()"></md-datepicker>
+            <img src="/dist/icons/ic_chevron_right.svg" ng-click="sanciones.addDay();" style="cursor: pointer;padding-left: 15px;"></img>
+          </div>
+          <span>{{sanciones.quarter}} Trimestre</span>
+        </div>
+        <div></div>
+      </div>
+     <span>El curso tiene {{sanciones.cursos[0].integrantes.length}} alumnos</span>
+
+    <div layout="row">
+      <md-input-container ng-hide="sanciones.disableEdit">
+        <label>Costo</label>
+        <md-select ng-model="sanciones.tipo" placeholder="Costo" class="md-no-underline" ng-disabled="sanciones.disableEdit">
+          <md-option value="0.5">1/2</md-option>
+          <md-option value="0.25">1/4</md-option>
+          <md-option value="1">4/4</md-option>
+        </md-select>
+      </md-input-container>
+
+      <md-input-container ng-hide="sanciones.disableEdit">
+        <label>Tipo</label>
+        <md-select ng-model="sanciones.tiposs" placeholder="Tipo de sancion" class="md-no-underline" ng-disabled="sanciones.disableEdit">
+          <md-option ng-repeat="ti in sanciones.tipos" value="{{ti}}">{{ti}}</md-option>
+        </md-select>
+      </md-input-container>
+
+      <md-autocomplete
+          style="margin: 22px;"
+          ng-hide="sanciones.disableEdit"
+          md-no-cache="false"
+          md-selected-item="sanciones.selectedItem"
+          md-search-text-change="sanciones.searchTextChange(sanciones.searchText)"
+          md-search-text="sanciones.searchText"
+          md-selected-item-change="sanciones.selectedItemChange(item)"
+          md-items="item in sanciones.querySearch(sanciones.searchText)"
+          md-item-text="item"
+          md-min-length="0"
+          placeholder="Personas">
+        <md-item-template>
+          <span md-highlight-text="sanciones.searchText" md-highlight-flags="^i">{{item}}</span>
+        </md-item-template>
+        <md-not-found>
+          No states matching "{{sanciones.searchText}}" were found.
+        </md-not-found>
+      </md-autocomplete>
+
+      <md-button ng-hide="sanciones.disableEdit" class="md-raised" style="height: 40px; margin-top: 20px;">Confirmar Sancion  </md-button>
+    </div>
+
+    <md-input-container class="md-block">
+      <label>Comentarios</label>
+      <textarea ng-model="sanciones.comentario" rows="5" md-select-on-focus ng-disabled="sanciones.disableEdit"></textarea>
+    </md-input-container>
+
+    </div>
+    <div style="margin-right: 20px;cursor: pointer;" ng-click="sanciones.enableEdit()">
+     <img src="/dist/icons/ic_edit.svg"></img>
+    </div>
+
+
+
+ </div>
+  <md-tabs md-dynamic-height md-border-bottom>
+    <md-tab label="{{c.label}}" ng-repeat="c in sanciones.cursos">
+      <md-content class="md-padding">
+<!--
+        mdt-row="{
+                            data: c.integrantes,
+                            'column-keys': [
+                                'name',
+                                'nt1',
+                                'nt2',
+                                'nt3',
+                                'pc',
+                                'nt',
+                                'pt',
+                                'gt8'
+                            ]
+                            }" -->
+
+        <!-- <mdt-table
+                            selectable-rows="true"
+                            >
+          <mdt-header-row>
+            <mdt-column align-rule="left" editable-field="smallEditDialog">Alumno</mdt-column>
+            <mdt-column align-rule="right" editable-field="textInput">Nota</mdt-column>
+            <mdt-column align-rule="right">Nota</mdt-column>
+            <mdt-column align-rule="right">Nota</mdt-column>
+            <mdt-column align-rule="right">PC</mdt-column>
+            <mdt-column align-rule="right">NT</mdt-column>
+            <mdt-column align-rule="right">PT</mdt-column>
+            <mdt-column align-rule="right">>8</mdt-column>
+          </mdt-header-row>
+          <mdt-row ng-repeat="int in c.integrantes">
+            <mdt-cell editable-field="smallEditDialog">{{int.name}}</mdt-cell>
+            <mdt-cell editable-field="smallEditDialog">{{int.nt1}}</mdt-cell>
+            <mdt-cell editable-field="smallEditDialog">{{int.nt2}}</mdt-cell>
+            <mdt-cell editable-field="smallEditDialog">{{int.nt3}}</mdt-cell>
+            <mdt-cell editable-field="smallEditDialog">{{int.pc}}</mdt-cell>
+            <mdt-cell editable-field="smallEditDialog">{{int.nt}}</mdt-cell>
+            <mdt-cell editable-field="smallEditDialog">{{int.pt}}</mdt-cell>
+            <mdt-cell editable-field="smallEditDialog">{{int.gt8}}</mdt-cell>
+          </mdt-row>
+        </mdt-table> -->
+
+        <md-table-container>
+          <table md-table md-row-select="sanciones.select" multiple="true" ng-model="sanciones.selected" md-progress="promise" >
+            <thead md-head md-order="query.order" md-on-reorder="getDesserts">
+              <tr md-row>
+                <th md-column><span>Banco</span></th>
+                <th md-column><span>Nombre</span></th>
+                <th md-column><span>Sancion</span></th>
+                <th md-column><span>Sanciones totales</span></th>
+              </tr>
+            </thead>
+            <tbody md-body>
+              <tr md-row md-select="int" md-select-id="name" md-auto-select md-row ng-repeat="int in c.integrantes" ng-disabled="sanciones.disableEdit">
+                <td md-cell>
+                  {{int.banco}}
+                </td>
+                <td md-cell>
+                  {{int.nombre}}
+                </td>
+                <td md-cell>
+                  {{int.sanciond}}
+                </td>
+                <td md-cell>
+                  {{int.sanciont}}
+                </td>
+
+              </tr>
+            </tbody>
+          </table>
+        </md-table-container>
+
+      </md-content>
+    </md-tab>
+  </md-tabs>
+</md-content>

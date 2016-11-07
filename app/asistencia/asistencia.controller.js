@@ -42,12 +42,14 @@
           asistencia.date.setDate(asistencia.date.getDate()+1);
           var newDateObj = new Date(asistencia.date);
           asistencia.date = newDateObj;
+          asistencia.quarter = Math.floor((asistencia.date.getMonth() + 3) / 3);
         }
 
         function subtractDay(){
           asistencia.date.setDate(asistencia.date.getDate()-1);
           var newDateObj = new Date(asistencia.date);
           asistencia.date = newDateObj;
+          asistencia.quarter = Math.floor((asistencia.date.getMonth() + 3) / 3);
         }
 
         var cabecera = {
@@ -66,8 +68,8 @@
 
         var curso1={
           label: "curso 1",
-          integrantes: [{nombre:'ale, ale', edad: 18, dni:35666999, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 23, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25}, {nombre:'ale, ale', edad: 18, dni:35666999, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 23, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25}, {nombre:'ale, ale', edad: 18, dni:35666999, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 23, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25}, {nombre:'ale, ale', edad: 18, dni:35666999, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 23, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25},
-        {nombre:'ale, ale', edad: 18, dni:35666999, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 23, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25}, {nombre:'ale, ale', edad: 18, dni:35666999, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 23, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25}, {nombre:'ale, ale', edad: 18, dni:35666999, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 23, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25}, {nombre:'ale, ale', edad: 18, dni:35666999, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 23, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25}, {nombre:'ale, ale', edad: 18, dni:35666999, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 23, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25}, {nombre:'ale, ale', edad: 18, dni:35666999, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 23, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25},
+          integrantes: [{nombre:'Hernandez, Diego', edad: 15, dni:35666999, falta: "0", faltaAcumulada: "9.25", presente: true, banco: 1, tj: 9, ti: 4, ts: 3, tt: 12, porcentaje: 36}, {nombre:'Waters, Roger', edad: 17, dni:35666695, falta: "3", faltaAcumulada: "3.50", presente: false, banco: 2, tj: 11, ti: 4, ts: 3, tt: 17, porcentaje: 75}, {nombre:' Aguero, Esteban', edad: 18, dni:35666999, falta: "2", faltaAcumulada: "10", presente: true, banco: 3, tj: 11, ti: 4, ts: 6, tt: 20, porcentaje: 33}, {nombre:'Connor, Sara', edad: 13, dni:35658699, falta: "2", faltaAcumulada: "11", presente: true, banco: 4, tj: 12, ti: 4, ts: 6, tt: 13, porcentaje: 50},
+        {nombre:'Guevara, Ernesto', edad: 17, dni:31234567, falta: "0", faltaAcumulada: "5", presente: false, banco: 5, tj: 14, ti: 5, ts: 3, tt: 17, porcentaje: 40}, {nombre:'Riquelme, Juan', edad: 14, dni:369852145, falta: "2", faltaAcumulada: "16", presente: true, banco: 6, tj: 13, ti: 8, ts: 7, tt: 20, porcentaje: 70}, {nombre:'De medici, Monica', edad: 17, dni:39656258, falta: "0", faltaAcumulada: "7", presente: true, banco: 27, tj: 1, ti: 6, ts: 7, tt: 9, porcentaje: 66}, {nombre:'ale, ale', edad: 18, dni:35666999, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 23, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25}, {nombre:'ale, ale', edad: 18, dni:35666999, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 23, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25}, {nombre:'ale, ale', edad: 18, dni:35666999, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 23, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25},
       {nombre:'ale, ale', edad: 18, dni:35666999, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 23, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25}, {nombre:'ale, ale', edad: 18, dni:35666999, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 23, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25}, {nombre:'ale, ale', edad: 18, dni:35666999, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 23, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25}, {nombre:'ale, ale', edad: 18, dni:35666999, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 23, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25}, {nombre:'ale, ale', edad: 18, dni:35666999, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 23, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25}]
         }
 

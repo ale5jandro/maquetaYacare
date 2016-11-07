@@ -55,8 +55,8 @@
           md-is-locked-open="true"
           md-whiteframe="4">
         <md-content layout-padding layout="column" class="content-navigation">
-          <div class="nav-option" layout="row" layout-align="start center"><img src="/dist/icons/ic_home.svg"></img><span>Mis cursos</span></div>
-          <div class="nav-option" layout="row" layout-align="start center"><img src="/dist/icons/ic_gavel.svg"></img><span>Sanciones</span></div>
+          <div class="nav-option" layout="row" layout-align="start center" ui-sref="miscursos"><img src="/dist/icons/ic_home.svg"></img><span>Mis cursos</span></div>
+          <div class="nav-option" layout="row" layout-align="start center" ui-sref="sanciones"><img src="/dist/icons/ic_gavel.svg"></img><span>Sanciones</span></div>
           <div class="nav-option" layout="row" layout-align="start center" ui-sref="notas"><img src="/dist/icons/ic_grade.svg"></img><span>Notas</span></div>
           <div class="nav-option" layout="row" layout-align="start center" ui-sref="asistencia"><img src="/dist/icons/ic_assignment.svg"></img><span>Asistencia</span></div>
           <md-divider></md-divider>
@@ -108,6 +108,14 @@
     <script type="text/javascript" src='/app/notas/notas.module.js'></script>
     <script type="text/javascript" src='/app/notas/notas.controller.js'></script>
     <script type="text/javascript" src='/app/notas/notas.route.js'></script>
+
+    <script type="text/javascript" src='/app/sanciones/sanciones.module.js'></script>
+    <script type="text/javascript" src='/app/sanciones/sanciones.controller.js'></script>
+    <script type="text/javascript" src='/app/sanciones/sanciones.route.js'></script>
+
+    <script type="text/javascript" src='/app/misCursos/misCursos.module.js'></script>
+    <script type="text/javascript" src='/app/misCursos/misCursos.controller.js'></script>
+    <script type="text/javascript" src='/app/misCursos/misCursos.route.js'></script>
 
     <script type="text/javascript" src='/app/app.module.js'></script>
   </body>

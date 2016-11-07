@@ -4,6 +4,8 @@
       'app.core',
       'busqueda',
       'asistencia',
-      'notas'
+      'notas',
+      'sanciones',
+      'miscursos'
     ]);
 }());

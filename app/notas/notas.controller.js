@@ -62,12 +62,14 @@
           notas.date.setDate(notas.date.getDate()+1);
           var newDateObj = new Date(notas.date);
           notas.date = newDateObj;
+          asistencia.quarter = Math.floor((asistencia.date.getMonth() + 3) / 3);
         }
 
         function subtractDay(){
           notas.date.setDate(notas.date.getDate()-1);
           var newDateObj = new Date(notas.date);
           notas.date = newDateObj;
+          asistencia.quarter = Math.floor((asistencia.date.getMonth() + 3) / 3);
         }
 
 
