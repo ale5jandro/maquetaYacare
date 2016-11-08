@@ -97,6 +97,10 @@
         </form>
   </div>
 
+
+
+  <md-tabs md-dynamic-height md-border-bottom>
+        <md-tab label="1A">
   <div layout="row">
 
     <md-content class="person-container">
@@ -254,3 +258,329 @@
     </md-content>
   </div>
 </div>
+</md-tab>
+
+
+
+        <md-tab label="1B">
+  <div layout="row">
+
+    <md-content class="person-container">
+      <md-card class="md-whiteframe-2dp" ng-repeat="arr in vm.arrayPerson track by $index" ng-class="{'task-focus md-whiteframe-6dp cardAbierto' :$index==selected}">
+        <md-card-content flex>
+          <div class="person-header" layout="row" layout-align="space-between center" ng-click="vm.seleccionarAle($index)">
+            <img class="avatar" src="{{vm.foto}}">
+            <span flex="20">
+              {{arr.personalInformation.firstName}}
+              {{arr.personalInformation.surnames}}
+            </span>
+
+            <span flex="20">Edad {{arr.personalInformation.birth.age}}</span>
+            <span flex="20">DNI {{arr.personalInformation.identityDocuments.mainIdentity.identityNumber}}</span>
+            <!-- <span flex="20" ng-if="arr.students">Tutor</span>
+            <span flex="20" ng-if="!arr.students">Estudiante</span> -->
+          </div>
+          <div  layout="column" ng-if="vm.selected==$index"  style="margin-left:-16px; margin-bottom: -10px;">
+            <div layout="row">
+              <div layout="column" flex="50">
+                <div class="level1" layout="row">
+                  <div  class="level1">
+                    <img class="profile" src="{{arr.foto}}">
+                  </div>
+                  <div  class="level1">
+                    <h3>{{arr.personalInformation.firstName}}
+                    {{arr.personalInformation.surnames}}</h3>
+                    <h3>{{arr.personalInformation.identityDocuments.mainIdentity.identityNumber}}</h3>
+                  </div>
+                  <div flex hide show-gt-md></div>
+                  <div layout="row" hide show-gt-md>
+                    <div style="padding:2px;width:40px;height:40px;border-radius:90px;"><img style="width:40px;height:40px;border-radius:90px;" src="{{vm.foto}}"><md-tooltip md-direction="left">Marco Antonio - Padre</md-tooltip></img></div>
+                    <div style="padding:2px;width:40px;height:40px;border-radius:90px;"><img style="width:40px;height:40px;border-radius:90px;" src="{{vm.foto}}"><md-tooltip md-direction="left">Catalina de Médici - Madre</md-tooltip></img></div>
+                    <div style="padding:2px;width:40px;height:40px;border-radius:90px;"><img style="width:40px;height:40px;border-radius:90px;" src="{{vm.foto}}"><md-tooltip md-direction="left">Julio Cesar - Hermano</md-tooltip></img></div>
+                    <div style="padding:2px;width:40px;height:40px;border-radius:90px;"><img style="width:40px;height:40px;border-radius:90px;" src="{{vm.foto}}"><md-tooltip md-direction="left">Victoria Hannover - Hermana</md-tooltip></img></div>
+                  </div>
+                </div>
+                <div class="level1">
+                  {{arr.personalInformation.firstName}} {{arr.personalInformation.surnames}}, hombre naciedo en Argentina de nacionalidad argentino con domicilio en colon 500 de la ciudad de cordoba, Argentina
+                  <br>
+                  <br>
+                  <div layout="row" layout-align="start center"><img src="/dist/icons/ic_phone.svg"></img><span> 55663311<span></div>
+                  <br>
+                  <div layout="row" layout-align="start center"><img src="/dist/icons/ic_email.svg"></img><span> 55663311<span></div>
+                </div>
+              </div>
+            <div layout="column" flex="50">
+              <div  layout="column" layout-align="center center">
+                <!-- <md-progress-circular class="md-warn md-hue-3" md-diameter="70"></md-progress-circular> -->
+                <h2>Calificaciones - Promedio general = 8</h2>
+                <md-table-container>
+                  <table md-table md-row-select multiple ng-model="notas.selected" md-progress="promise">
+                    <thead md-head md-order="query.order" md-on-reorder="getDesserts">
+                      <tr md-row>
+                        <th md-column><span>Trimestre</span></th>
+                        <th md-column><span>Promedio de calificaciones</span></th>
+                        <th md-column md-numeric><span>Nota Trimestral</span></th>
+                        <th md-column md-numeric><span>Promedio Trimestral</span></th>
+
+                      </tr>
+                    </thead>
+                    <tbody md-body>
+                      <tr md-row>
+                        <td md-cell>
+                          Primero
+                        </td>
+                        <td md-cell>
+                          8
+                        </td>
+                        <td md-cell>
+                          10
+                        </td>
+                        <td md-cell>
+                          9
+                        </td>
+                      </tr>
+                      <tr md-row>
+                        <td md-cell>
+                          Segundo
+                        </td>
+                        <td md-cell>
+                          7
+                        </td>
+                        <td md-cell>
+                          9
+                        </td>
+                        <td md-cell>
+                          8
+                        </td>
+                      </tr>
+                      <tr md-row>
+                        <td md-cell>
+                          Tercero
+                        </td>
+                        <td md-cell>
+                          6
+                        </td>
+                        <td md-cell>
+                          8
+                        </td>
+                        <td md-cell>
+                          7
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </md-table-container>
+              </div>
+              <div  layout="column" layout-align="center center">
+                <h2>Inasistencias/Suspenciones</h2>
+                <md-table-container>
+                  <table md-table md-row-select multiple ng-model="notas.selected" md-progress="promise">
+                    <thead md-head md-order="query.order" md-on-reorder="getDesserts">
+                      <tr md-row>
+                        <th md-column><span>Justificadas</span></th>
+                        <th md-column><span>Injustificadas</span></th>
+                        <th md-column md-numeric><span>Suspensiones</span></th>
+                        <th md-column md-numeric><span>Total</span></th>
+                        <th md-column md-numeric><span>Llamadas de atencion activas</span></th>
+
+                      </tr>
+                    </thead>
+                    <tbody md-body>
+                      <tr md-row>
+                        <td md-cell>
+                          8
+                        </td>
+                        <td md-cell>
+                          6 - 1/4
+                        </td>
+                        <td md-cell>
+                          2
+                        </td>
+                        <td md-cell>
+                          16 - 1/4
+                        </td>
+                        <td md-cell>
+                          0
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </md-table-container>
+                <!-- <b>Justificadas:</b>8
+                <b>Injustificadas:</b>6 - 1/4
+                <b>Suspenciones:</b>2
+                <b>Total:</b>16 - 1/4
+                <b>Llamadas de atencion activas:</b>0
+                <b>Asistencia hoy:</b> Presente -->
+              </div>
+            </div>
+          </div>
+        </md-card-content>
+      </md-card>
+    </md-content>
+  </div>
+</div>
+</md-tab>
+
+
+        <md-tab label="2A">
+  <div layout="row">
+
+    <md-content class="person-container">
+      <md-card class="md-whiteframe-2dp" ng-repeat="arr in vm.arrayPerson track by $index" ng-class="{'task-focus md-whiteframe-6dp cardAbierto' :$index==selected}">
+        <md-card-content flex>
+          <div class="person-header" layout="row" layout-align="space-between center" ng-click="vm.seleccionarAle($index)">
+            <img class="avatar" src="{{vm.foto}}">
+            <span flex="20">
+              {{arr.personalInformation.firstName}}
+              {{arr.personalInformation.surnames}}
+            </span>
+
+            <span flex="20">Edad {{arr.personalInformation.birth.age}}</span>
+            <span flex="20">DNI {{arr.personalInformation.identityDocuments.mainIdentity.identityNumber}}</span>
+            <!-- <span flex="20" ng-if="arr.students">Tutor</span>
+            <span flex="20" ng-if="!arr.students">Estudiante</span> -->
+          </div>
+          <div  layout="column" ng-if="vm.selected==$index"  style="margin-left:-16px; margin-bottom: -10px;">
+            <div layout="row">
+              <div layout="column" flex="50">
+                <div class="level1" layout="row">
+                  <div  class="level1">
+                    <img class="profile" src="{{arr.foto}}">
+                  </div>
+                  <div  class="level1">
+                    <h3>{{arr.personalInformation.firstName}}
+                    {{arr.personalInformation.surnames}}</h3>
+                    <h3>{{arr.personalInformation.identityDocuments.mainIdentity.identityNumber}}</h3>
+                  </div>
+                  <div flex hide show-gt-md></div>
+                  <div layout="row" hide show-gt-md>
+                    <div style="padding:2px;width:40px;height:40px;border-radius:90px;"><img style="width:40px;height:40px;border-radius:90px;" src="{{vm.foto}}"><md-tooltip md-direction="left">Marco Antonio - Padre</md-tooltip></img></div>
+                    <div style="padding:2px;width:40px;height:40px;border-radius:90px;"><img style="width:40px;height:40px;border-radius:90px;" src="{{vm.foto}}"><md-tooltip md-direction="left">Catalina de Médici - Madre</md-tooltip></img></div>
+                    <div style="padding:2px;width:40px;height:40px;border-radius:90px;"><img style="width:40px;height:40px;border-radius:90px;" src="{{vm.foto}}"><md-tooltip md-direction="left">Julio Cesar - Hermano</md-tooltip></img></div>
+                    <div style="padding:2px;width:40px;height:40px;border-radius:90px;"><img style="width:40px;height:40px;border-radius:90px;" src="{{vm.foto}}"><md-tooltip md-direction="left">Victoria Hannover - Hermana</md-tooltip></img></div>
+                  </div>
+                </div>
+                <div class="level1">
+                  {{arr.personalInformation.firstName}} {{arr.personalInformation.surnames}}, hombre naciedo en Argentina de nacionalidad argentino con domicilio en colon 500 de la ciudad de cordoba, Argentina
+                  <br>
+                  <br>
+                  <div layout="row" layout-align="start center"><img src="/dist/icons/ic_phone.svg"></img><span> 55663311<span></div>
+                  <br>
+                  <div layout="row" layout-align="start center"><img src="/dist/icons/ic_email.svg"></img><span> 55663311<span></div>
+                </div>
+              </div>
+            <div layout="column" flex="50">
+              <div  layout="column" layout-align="center center">
+                <!-- <md-progress-circular class="md-warn md-hue-3" md-diameter="70"></md-progress-circular> -->
+                <h2>Calificaciones - Promedio general = 8</h2>
+                <md-table-container>
+                  <table md-table md-row-select multiple ng-model="notas.selected" md-progress="promise">
+                    <thead md-head md-order="query.order" md-on-reorder="getDesserts">
+                      <tr md-row>
+                        <th md-column><span>Trimestre</span></th>
+                        <th md-column><span>Promedio de calificaciones</span></th>
+                        <th md-column md-numeric><span>Nota Trimestral</span></th>
+                        <th md-column md-numeric><span>Promedio Trimestral</span></th>
+
+                      </tr>
+                    </thead>
+                    <tbody md-body>
+                      <tr md-row>
+                        <td md-cell>
+                          Primero
+                        </td>
+                        <td md-cell>
+                          8
+                        </td>
+                        <td md-cell>
+                          10
+                        </td>
+                        <td md-cell>
+                          9
+                        </td>
+                      </tr>
+                      <tr md-row>
+                        <td md-cell>
+                          Segundo
+                        </td>
+                        <td md-cell>
+                          7
+                        </td>
+                        <td md-cell>
+                          9
+                        </td>
+                        <td md-cell>
+                          8
+                        </td>
+                      </tr>
+                      <tr md-row>
+                        <td md-cell>
+                          Tercero
+                        </td>
+                        <td md-cell>
+                          6
+                        </td>
+                        <td md-cell>
+                          8
+                        </td>
+                        <td md-cell>
+                          7
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </md-table-container>
+              </div>
+              <div  layout="column" layout-align="center center">
+                <h2>Inasistencias/Suspenciones</h2>
+                <md-table-container>
+                  <table md-table md-row-select multiple ng-model="notas.selected" md-progress="promise">
+                    <thead md-head md-order="query.order" md-on-reorder="getDesserts">
+                      <tr md-row>
+                        <th md-column><span>Justificadas</span></th>
+                        <th md-column><span>Injustificadas</span></th>
+                        <th md-column md-numeric><span>Suspensiones</span></th>
+                        <th md-column md-numeric><span>Total</span></th>
+                        <th md-column md-numeric><span>Llamadas de atencion activas</span></th>
+
+                      </tr>
+                    </thead>
+                    <tbody md-body>
+                      <tr md-row>
+                        <td md-cell>
+                          8
+                        </td>
+                        <td md-cell>
+                          6 - 1/4
+                        </td>
+                        <td md-cell>
+                          2
+                        </td>
+                        <td md-cell>
+                          16 - 1/4
+                        </td>
+                        <td md-cell>
+                          0
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </md-table-container>
+                <!-- <b>Justificadas:</b>8
+                <b>Injustificadas:</b>6 - 1/4
+                <b>Suspenciones:</b>2
+                <b>Total:</b>16 - 1/4
+                <b>Llamadas de atencion activas:</b>0
+                <b>Asistencia hoy:</b> Presente -->
+              </div>
+            </div>
+          </div>
+        </md-card-content>
+      </md-card>
+    </md-content>
+  </div>
+</div>
+</md-tab>
+
+  </md-tabs>
