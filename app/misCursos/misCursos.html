@@ -7,7 +7,7 @@
           <div layout="row" class="search-input">
             <div flex layout="column" layout-align="center center">
               <div layout="row" layout-align="center center" class="md-search-input-container">
-                <input ng-model="searchInput" type="text" placeholder="Buscar usuarios" class="buscador">
+                <input ng-model="vm.searchInput" type="text" placeholder="Buscar usuarios" class="buscador">
                 <md-button class="search-dialog-button" ng-click="vm.toogleSearchOptions('visible')">
                   <md-icon class="material-icons icon-search-options" aria-label="Buscar" style="color:black">arrow_drop_down</md-icon>
                 </md-button>
@@ -113,7 +113,7 @@
               {{arr.personalInformation.surnames}}
             </span>
 
-            <span flex="20">Edad {{arr.personalInformation.birth.age}}</span>
+            <!-- <span flex="20">Edad {{arr.personalInformation.birth.age}}</span> -->
             <span flex="20">DNI {{arr.personalInformation.identityDocuments.mainIdentity.identityNumber}}</span>
             <!-- <span flex="20" ng-if="arr.students">Tutor</span>
             <span flex="20" ng-if="!arr.students">Estudiante</span> -->
