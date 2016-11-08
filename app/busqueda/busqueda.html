@@ -2,12 +2,12 @@
 
   <div>
 
-    <form ng-submit="buscar()" layout="row" layout-align="center center" layout-padding ng-cloak style="max-height:100%">
+    <form ng-submit="vm.buscar()" layout="row" layout-align="center center" layout-padding ng-cloak style="max-height:100%">
         <!-- <form layout="row" layout-align="center center" layout-padding ng-cloak style="max-height:100%"> -->
           <div layout="row" class="search-input">
             <div flex layout="column" layout-align="center center">
               <div layout="row" layout-align="center center" class="md-search-input-container">
-                <input ng-model="searchInput" type="text" placeholder="Buscar usuarios" class="buscador">
+                <input ng-model="vm.searchInput" type="text" placeholder="Buscar usuarios" class="buscador">
                 <md-button class="search-dialog-button" ng-click="vm.toogleSearchOptions('visible')">
                   <md-icon class="material-icons icon-search-options" aria-label="Buscar" style="color:black">arrow_drop_down</md-icon>
                 </md-button>
@@ -101,16 +101,19 @@
 
     <md-content class="person-container">
       <md-card class="md-whiteframe-2dp" ng-repeat="arr in vm.arrayPerson track by $index" ng-class="{'task-focus md-whiteframe-6dp cardAbierto' :$index==selected}">
+        <!-- {{vm.arrayPerson}} -->
         <md-card-content flex>
           <div class="person-header" layout="row" layout-align="space-between center" ng-click="vm.seleccionarAle($index)">
             <img class="avatar" src="{{vm.foto}}">
             <span flex="20">
-              {{arr.personalInformation.firstName}}
-              {{arr.personalInformation.surnames}}
+              {{arr.nombre}}
+              <!-- {{arr.personalInformation.surnames}} -->
             </span>
 
-            <span flex="20">Edad {{arr.personalInformation.birth.age}}</span>
-            <span flex="20">DNI {{arr.personalInformation.identityDocuments.mainIdentity.identityNumber}}</span>
+            <span flex="20">Edad {{arr.edad}}</span>
+            <!-- <span flex="20">Edad {{arr.personalInformation.birth.age}}</span> -->
+            <!-- <span flex="20">DNI {{arr.personalInformation.identityDocuments.mainIdentity.identityNumber}}</span> -->
+            <span flex="20">DNI {{arr.dni}}</span>
             <span flex="20" ng-if="arr.students">Tutor</span>
             <span flex="20" ng-if="!arr.students">Estudiante</span>
           </div>
@@ -122,9 +125,8 @@
                     <img class="profile" src="{{arr.foto}}">
                   </div>
                   <div  class="level1">
-                    <h3>{{arr.personalInformation.firstName}}
-                    {{arr.personalInformation.surnames}}</h3>
-                    <h3>{{arr.personalInformation.identityDocuments.mainIdentity.identityNumber}}</h3>
+                    <h3>{{arr.nombre}}</h3>
+                    <h3>{{arr.dni}}</h3>
                   </div>
                   <div hide show-gt-md flex></div>
                   <div layout="row" hide show-gt-md>
@@ -135,7 +137,7 @@
                   </div>
                 </div>
                 <div class="level1">
-                  {{arr.personalInformation.firstName}} {{arr.personalInformation.surnames}}, hombre naciedo en Argentina de nacionalidad argentino con domicilio en colon 500 de la ciudad de cordoba, Argentina
+                  {{arr.nombre}}, hombre naciedo en Argentina de nacionalidad argentino con domicilio en colon 500 de la ciudad de cordoba, Argentina
                   <br>
                   <br>
                   <div layout="row" layout-align="start center"><img src="/dist/icons/ic_phone.svg"></img><span> 55663311<span></div>

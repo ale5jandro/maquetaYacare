@@ -130,4 +130,46 @@ var curso3={
 });
 
 
+app.get('/busqueda/:busqueda', function(req, res){
+
+  var array = [{nombre:'Abbondanzieri, Roberto', edad: 18, dni:35666999, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 23, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25, sanciond: "1/2", sanciont: "9"}, {nombre:'Waters, Roger', edad: 17, dni:35777999, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 25, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25, sanciond: "0", sanciont: "3"}, {nombre:'Connor, Sara', edad: 18, dni:34775999, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 23, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25, sanciond: "0", sanciont: "4"}, {nombre:'Zaballeta, Norma', edad: 17, dni:35666123, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 33, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25, sanciond: "0", sanciont: "11"},
+{nombre:'Guevara, Ernesto', edad: 16, dni:35456999, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 73, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25, sanciond: "1/2", sanciont: "7"}, {nombre:'Riquelme, Juan', edad: 17, dni:35789999, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 23, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25, sanciond: "1/2", sanciont: "8"}, {nombre:'De medici, Monica', edad: 17, dni:36666999, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 23, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25, sanciond: "0", sanciont: "12"}, {nombre:'Rosales, Mauricio', edad: 19, dni:33666999, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 23, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25, sanciond: "0", sanciont: "15"}, {nombre:'Perez, Armando', edad: 18, dni:35456789, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 23, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25, sanciond: "0", sanciont: "15.5"}, {nombre:'Garcia, Carlos', edad: 18, dni:36666759, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 26, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25, sanciond: "1/2", sanciont: "6.5"},
+{nombre:'Loyd, Guillermo', edad: 16, dni:39885299, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 63, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25, sanciond: "0", sanciont: "17"}, {nombre:'Vilas, Nicolas', edad: 18, dni:35666456, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 13, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25, sanciond: "0", sanciont: "11"}, {nombre:'Curie, Maria', edad: 17, dni:35789299, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 93, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25, sanciond: "0", sanciont: "16.5"}, {nombre:'Sosa, Emiliano', edad: 18, dni:35666999, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 23, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25, sanciond: "1/2", sanciont: "9"}, {nombre:'ale, ale', edad: 18, dni:35666999, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 23, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25, sanciond: "1/2", sanciont: "9"}];
+
+  console.log(req.params)
+
+
+
+ var result = [];
+  if(req.param('busqueda')){
+      result = findFirstOccurrence(array, "nombre", req.param('busqueda'));
+  }else{
+      result = array;
+  }
+  res.send(result);
+});
+
+app.get('/busqueda', function(req, res){
+
+  var array = [{nombre:'Abbondanzieri, Roberto', edad: 18, dni:35666999, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 23, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25, sanciond: "1/2", sanciont: "9"}, {nombre:'Waters, Roger', edad: 17, dni:35777999, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 25, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25, sanciond: "0", sanciont: "3"}, {nombre:'Connor, Sara', edad: 18, dni:34775999, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 23, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25, sanciond: "0", sanciont: "4"}, {nombre:'Zaballeta, Norma', edad: 17, dni:35666123, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 33, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25, sanciond: "0", sanciont: "11"},
+{nombre:'Guevara, Ernesto', edad: 16, dni:35456999, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 73, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25, sanciond: "1/2", sanciont: "7"}, {nombre:'Riquelme, Juan', edad: 17, dni:35789999, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 23, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25, sanciond: "1/2", sanciont: "8"}, {nombre:'De medici, Monica', edad: 17, dni:36666999, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 23, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25, sanciond: "0", sanciont: "12"}, {nombre:'Rosales, Mauricio', edad: 19, dni:33666999, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 23, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25, sanciond: "0", sanciont: "15"}, {nombre:'Perez, Armando', edad: 18, dni:35456789, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 23, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25, sanciond: "0", sanciont: "15.5"}, {nombre:'Garcia, Carlos', edad: 18, dni:36666759, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 26, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25, sanciond: "1/2", sanciont: "6.5"},
+{nombre:'Loyd, Guillermo', edad: 16, dni:39885299, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 63, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25, sanciond: "0", sanciont: "17"}, {nombre:'Vilas, Nicolas', edad: 18, dni:35666456, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 13, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25, sanciond: "0", sanciont: "11"}, {nombre:'Curie, Maria', edad: 17, dni:35789299, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 93, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25, sanciond: "0", sanciont: "16.5"}, {nombre:'Sosa, Emiliano', edad: 18, dni:35666999, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 23, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25, sanciond: "1/2", sanciont: "9"}, {nombre:'ale, ale', edad: 18, dni:35666999, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 23, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25, sanciond: "1/2", sanciont: "9"}];
+
+  res.send(array);
+});
+
+
+var findFirstOccurrence = function(array, property, value){
+  var re = new RegExp(value, 'ig');
+  var array2 = [];
+  for(var i = 0 ; i < array.length; i++){
+    if(array[i][property].match(re)){
+      // return array[i];
+      array2.push(array[i]);
+    }
+  }
+  return array2;
+}
+
+
 var ser = app.listen(3023);

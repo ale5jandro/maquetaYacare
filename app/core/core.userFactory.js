@@ -19,13 +19,21 @@
              getArrayCards: getArrayCards,
              getNotas: getNotas,
              getAistencia: getAistencia,
-             getSanciones: getSanciones
+             getSanciones: getSanciones,
+             buscar: buscar
         };
 
         return apiFactory;
 
         ////////////////////////////
 
+
+        function buscar(busqueda){
+          var url = ulrWS + 'busqueda';
+          if(busqueda)
+            url = ulrWS + 'busqueda/' + busqueda;
+          return $http.get(url);
+        }
 
         function getUsers(){
             var def1 = $q.defer();

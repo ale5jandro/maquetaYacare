@@ -25,6 +25,17 @@
         }
 
 
+        vm.buscar = function(){
+          console.log("busco");
+          userFactory.buscar(vm.searchInput).then(function(data){
+            vm.arrayPerson = [];
+            console.log(data);
+            vm.arrayPerson = data.data;
+          });
+
+
+        }
+
         var person = {
           nombre:"Ale",
           apellido: "Aiegetti",
@@ -77,8 +88,11 @@
         // });
         function activate() {
           userFactory.getUsers().then(function(data){
-              vm.arrayPerson = vm.arrayPerson.concat(data[0]);
-              vm.arrayPerson = vm.arrayPerson.concat(data[1]);
+              // vm.arrayPerson = vm.arrayPerson.concat(data[0]);
+              // vm.arrayPerson = vm.arrayPerson.concat(data[1]);
+              userFactory.buscar(vm.searchInput).then(function(data){
+                vm.arrayPerson = data.data;
+              });
               console.log(vm.arrayPerson);
           }
           );
