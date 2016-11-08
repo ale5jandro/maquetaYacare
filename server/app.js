@@ -10,7 +10,7 @@ var app = express();
 
 
 
-// var config = require(process.env.CONF||'/etc/nodejs-config/yacare.json').frontend;
+var config = require('../config.json').frontend;
 
 var logMiddleware = function() {
   return function(req, res, next) {
@@ -79,6 +79,7 @@ app.use('/backendPublic', function(req, res, next){
   var options = {
     url: config.protocol+'://'+config.backendIP+req.url,//https
   };
+  console.log(options.url);
   req.pipe(request(options)).pipe(res);
 });
 

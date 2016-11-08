@@ -1,0 +1,6 @@
+{
+  "frontend":{
+    "backendIP":"172.16.248.194:3023",
+    "protocol": "http"
+  }
+}

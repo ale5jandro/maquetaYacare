@@ -11,7 +11,7 @@
     function userFactory($http, $q) {
 
         var urlApi = 'https://colegios.unc.edu.ar/cnm/api/v1/';
-        var ulrWS = 'http://172.16.248.194:3023/'
+        var ulrWS = 'backendPublic/'
 
 
         var apiFactory = {
