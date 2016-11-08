@@ -111,8 +111,8 @@
 
             <span flex="20">Edad {{arr.personalInformation.birth.age}}</span>
             <span flex="20">DNI {{arr.personalInformation.identityDocuments.mainIdentity.identityNumber}}</span>
-            <span flex="20" ng-if="arr.students">Tutor</span>
-            <span flex="20" ng-if="!arr.students">Estudiante</span>
+            <!-- <span flex="20" ng-if="arr.students">Tutor</span>
+            <span flex="20" ng-if="!arr.students">Estudiante</span> -->
           </div>
           <div  layout="column" ng-if="vm.selected==$index"  style="margin-left:-16px; margin-bottom: -10px;">
             <div layout="row">
@@ -146,7 +146,7 @@
             <div layout="column" flex="50">
               <div  layout="column" layout-align="center center">
                 <!-- <md-progress-circular class="md-warn md-hue-3" md-diameter="70"></md-progress-circular> -->
-                <h2>Calificaiones - Promedio general = 8</h2>
+                <h2>Calificaciones - Promedio general = 8</h2>
                 <md-table-container>
                   <table md-table md-row-select multiple ng-model="notas.selected" md-progress="promise">
                     <thead md-head md-order="query.order" md-on-reorder="getDesserts">
