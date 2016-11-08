@@ -37,6 +37,27 @@
         vm.foto = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYIpIFnaPTMQl8TUIPwMWIdgXTdKnqxumbHGpMMeVrbIkC2kJI"
         vm.arrayPerson=[];
 
+        vm.filter = function(items){
+          var result = [];
+          // angular.forEach(items, function(key, value){
+          //   if()
+          // });
+          if(vm.searchInput){
+            for(var i = 0; i < items.length; i++){
+              console.log(items[i].personalInformation.firstName.toUpperCase());
+                if(items[i].personalInformation.firstName.toUpperCase().indexOf(vm.searchInput.toUpperCase()) != -1  || items[i].personalInformation.surnames.toUpperCase().indexOf(vm.searchInput.toUpperCase()) != -1 ){
+                  result.push(items[i]);
+
+                }
+            }
+          }
+          else{
+            result = items;
+          }
+          console.log(result);
+          return result;
+        }
+
         // vm.arrayPerson.push(person);
         // vm.arrayPerson.push(person);
         // vm.arrayPerson.push(person);

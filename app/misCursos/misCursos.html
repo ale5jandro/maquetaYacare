@@ -104,7 +104,7 @@
   <div layout="row">
 
     <md-content class="person-container">
-      <md-card class="md-whiteframe-2dp" ng-repeat="arr in vm.arrayPerson track by $index" ng-class="{'task-focus md-whiteframe-6dp cardAbierto' :$index==selected}">
+      <md-card class="md-whiteframe-2dp" ng-repeat="arr in vm.filter(vm.arrayPerson) track by $index" ng-class="{'task-focus md-whiteframe-6dp cardAbierto' :$index==selected}">
         <md-card-content flex>
           <div class="person-header" layout="row" layout-align="space-between center" ng-click="vm.seleccionarAle($index)">
             <img class="avatar" src="{{vm.foto}}">
