@@ -5,10 +5,10 @@
         .module('sanciones')
         .controller('sancionesController', Controller);
 
-    Controller.$inject = ['$scope', 'userFactory', '$q', '$filter', '$timeout'];
+    Controller.$inject = ['$scope', 'userFactory', '$q', '$filter', '$timeout','$mdToast'];
 
     /* @ngInject */
-    function Controller($scope, userFactory, $q, $filter, $timeout) {
+    function Controller($scope, userFactory, $q, $filter, $timeout, $mdToast) {
         var sanciones = this;
         console.log("ale");
 
@@ -29,6 +29,7 @@
         sanciones.querySearch = querySearch;
         sanciones.searchTextChange = searchTextChange;
         sanciones.selectedItemChange = selectedItemChange;
+        sanciones.confirm = confirm;
 
         activate();
 
@@ -109,6 +110,10 @@
           sanciones.disableEdit=true;
         }
 
+        function confirm(){
+          sanciones.disableEdit = true;
+          $mdToast.showSimple('Sanción aplicada');
+        }
 //agregar sanciones por dia y totales???
 
       //   var curso1={

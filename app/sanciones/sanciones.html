@@ -46,7 +46,7 @@
           md-items="item in sanciones.querySearch(sanciones.searchText)"
           md-item-text="item"
           md-min-length="0"
-          placeholder="Personas">
+          placeholder="Aplicado por">
         <md-item-template>
           <span md-highlight-text="sanciones.searchText" md-highlight-flags="^i">{{item}}</span>
         </md-item-template>
@@ -55,7 +55,7 @@
         </md-not-found>
       </md-autocomplete>
 
-      <md-button ng-hide="sanciones.disableEdit" class="md-raised" style="height: 40px; margin-top: 20px;">Confirmar Sancion  </md-button>
+      <md-button ng-hide="sanciones.disableEdit" class="md-raised" style="height: 40px; margin-top: 20px;" ng-click="sanciones.confirm()">Confirmar Sancion</md-button>
     </div>
 
     <md-input-container class="md-block">
