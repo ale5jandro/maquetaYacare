@@ -4,7 +4,7 @@
     <div layout="column" flex class="cabeceraAsistencia">
 
       <div layout="row" layout-align="space-between start">
-        <h2>Tomando notassss</h2>
+        <h2>Tomando notas</h2>
         <div layout="column" layout-align="center center">
           <div layout="row" layout-align="start center">
             <img src="/dist/icons/ic_chevron_left.svg" ng-click="notas.subtractDay();" style="cursor: pointer;"></img>
@@ -41,12 +41,12 @@
        <md-input-container>
          <label>Profesores</label>
          <md-select ng-model="notas.prof"
-                    md-on-close="notas.clearSearchTermProf()"
+                    md-on-close="notas.clearSearchTermMat()"
                     data-md-container-class="selectdemoSelectHeader">
            <md-select-header class="demo-select-header">
              <input ng-model="notas.searchTermProf"
                     type="search"
-                    placeholder="Buscar materia"
+                    placeholder="Buscar Profesor"
                     class="demo-header-searchbox md-text">
            </md-select-header>
            <md-optgroup label="profesores">
@@ -63,7 +63,7 @@
 
 
  </div>
-  <md-tabs md-dynamic-height md-border-bottom>
+  <md-tabs md-dynamic-height md-border-bottom ng-show="!notas.loading">
     <md-tab label="{{c.label}}" ng-repeat="c in notas.cursos">
       <md-content class="md-padding">
 <!--
@@ -181,4 +181,7 @@
       </md-content>
     </md-tab>
   </md-tabs>
+  <div ng-show="notas.loading" flex layout="column" layout-align="center center">
+    <md-progress-circular md-diameter="96" flex style="padding-top:500px;"></md-progress-circular>
+  </div>
 </md-content>

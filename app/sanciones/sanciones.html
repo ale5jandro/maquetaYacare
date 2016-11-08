@@ -4,7 +4,7 @@
     <div layout="column" flex class="cabeceraAsistencia">
 
       <div layout="row" layout-align="space-between start">
-        <h2>Tomando sancionessss</h2>
+        <h2>Tomando sanciones</h2>
         <div layout="column" layout-align="center center">
           <div layout="row" layout-align="start center">
             <img src="/dist/icons/ic_chevron_left.svg" ng-click="sanciones.subtractDay();" style="cursor: pointer;"></img>
@@ -71,7 +71,7 @@
 
 
  </div>
-  <md-tabs md-dynamic-height md-border-bottom>
+  <md-tabs md-dynamic-height md-border-bottom ng-show="!sanciones.loading">
     <md-tab label="{{c.label}}" ng-repeat="c in sanciones.cursos">
       <md-content class="md-padding">
 <!--
@@ -147,4 +147,7 @@
       </md-content>
     </md-tab>
   </md-tabs>
+  <div ng-show="sanciones.loading" flex layout="column" layout-align="center center">
+    <md-progress-circular md-diameter="96" flex style="padding-top:500px;"></md-progress-circular>
+  </div>
 </md-content>

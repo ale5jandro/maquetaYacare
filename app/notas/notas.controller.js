@@ -15,6 +15,7 @@
         notas.quarter=null;
         notas.grande = null;
         notas.notas = [{nt: 1}, {nt: 2}, {nt: 3}, {nt: 4}, {nt: 5}, {nt: 6}, {nt: 7}, {nt: 8}, {nt: 9}, {nt: 10}];
+        notas.loading=false;
 
 
         notas.enableEdit = enableEdit;
@@ -48,6 +49,15 @@
             ev.stopPropagation();
         });
 
+        notas.clearSearchTermMat = function(){
+          userFactory.getNotas().then(function(data){
+            notas.cursos = data.data;
+            notas.loading=false;
+
+          });
+          notas.loading=true;
+          notas.disableEdit=true;
+        }
 
         function enableEdit(){
           notas.disableEdit=!notas.disableEdit;
@@ -56,53 +66,83 @@
         function dateChanged(){
           notas.disableEdit=true;
           notas.quarter = Math.floor((notas.date.getMonth() + 3) / 3);
+          userFactory.getNotas().then(function(data){
+            notas.cursos = data.data;
+            notas.loading=false;
+          });
+          notas.loading=true;
+          notas.disableEdit=true;
         }
 
         function addDay(){
           notas.date.setDate(notas.date.getDate()+1);
           var newDateObj = new Date(notas.date);
           notas.date = newDateObj;
-          asistencia.quarter = Math.floor((asistencia.date.getMonth() + 3) / 3);
+          notas.quarter = Math.floor((notas.date.getMonth() + 3) / 3);
+          userFactory.getNotas().then(function(data){
+            notas.cursos = data.data;
+            notas.loading=false;
+          });
+          notas.loading=true;
+          notas.disableEdit=true;
         }
 
         function subtractDay(){
           notas.date.setDate(notas.date.getDate()-1);
           var newDateObj = new Date(notas.date);
           notas.date = newDateObj;
-          asistencia.quarter = Math.floor((asistencia.date.getMonth() + 3) / 3);
+          notas.quarter = Math.floor((notas.date.getMonth() + 3) / 3);
+          userFactory.getNotas().then(function(data){
+            notas.cursos = data.data;
+            notas.loading=false;
+          });
+          notas.loading=true;
+          notas.disableEdit=true;
         }
 
 
-        var curso1={
-          label: "curso 1",
-          integrantes: [{name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'},
-        {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'},
-      {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}]
-        }
-
-        var curso2={
-          label: "curso 2",
-          integrantes: [{name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'},
-        {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'},
-      {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}]
-        }
-
-        var curso3={
-          label: "curso 3",
-          integrantes: [{name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'},
-        {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'},
-      {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}]
-        }
+      //   var curso1={
+      //     label: "curso 1",
+      //     integrantes: [{name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'},
+      //   {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'},
+      // {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}]
+      //   }
+      //
+      //   var curso2={
+      //     label: "curso 2",
+      //     integrantes: [{name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'},
+      //   {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'},
+      // {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}]
+      //   }
+      //
+      //   var curso3={
+      //     label: "curso 3",
+      //     integrantes: [{name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'},
+      //   {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'},
+      // {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}, {name:'ale, ale', nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", banco: 5, pt3: 6, pg: '6.75'}]
+      //   }
 
         // curso1.integrantes.unshift(cabecera);
         // curso2.integrantes.unshift(cabecera);
         // curso3.integrantes.unshift(cabecera);
+        // notas.cursos=[curso1, curso2, curso3];
 
-        notas.cursos=[curso1, curso2, curso3];
+        // notas.cursosbk = $.extend({}, notas.cursosbk, notas.cursos);
+        // notas.cursosbk = notas.cursos.slice(0);
+        // notas.cursosbk = JSON.parse(JSON.stringify(notas.cursos));
+
 
         function activate() {
           notas.quarter = Math.floor((notas.date.getMonth() + 3) / 3);
           notas.grande = $mdMedia('gt-md');
+          userFactory.getNotas().then(function(data){
+            notas.loading=false;
+            notas.cursos = data.data;
+
+          });
+          notas.loading=true;
+
+
         }
 
     }

@@ -11,11 +11,15 @@
     function userFactory($http, $q) {
 
         var urlApi = 'https://colegios.unc.edu.ar/cnm/api/v1/';
+        var ulrWS = 'http://172.16.248.194:3023/'
 
 
         var apiFactory = {
              getUsers: getUsers,
-             getArrayCards: getArrayCards
+             getArrayCards: getArrayCards,
+             getNotas: getNotas,
+             getAistencia: getAistencia,
+             getSanciones: getSanciones
         };
 
         return apiFactory;
@@ -49,6 +53,18 @@
 
             return $q.all([def1.promise, def2.promise]);
 
+        }
+
+        function getNotas(){
+          return $http.get(ulrWS + 'notas');
+        }
+
+        function getAistencia(){
+          return $http.get(ulrWS + 'asistencia');
+        }
+
+        function getSanciones(){
+          return $http.get(ulrWS + 'sanciones');
         }
 
         function getArrayCards(callback){

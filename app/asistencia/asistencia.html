@@ -4,7 +4,7 @@
     <div layout="column" flex class="cabeceraAsistencia">
 
       <div layout="row" layout-align="space-between start">
-        <h2>Tomando asistenciasss</h2>
+        <h2>Tomando asistencias</h2>
         <div layout="column" layout-align="center center">
           <div layout="row" layout-align="start center">
             <img src="/dist/icons/ic_chevron_left.svg" ng-click="asistencia.subtractDay();" style="cursor: pointer;"></img>
@@ -29,7 +29,7 @@
      <img src="/dist/icons/ic_edit.svg"></img>
     </div>
  </div>
-  <md-tabs md-dynamic-height md-border-bottom>
+  <md-tabs md-dynamic-height md-border-bottom ng-show="!asistencia.loading">
     <md-tab label="{{c.label}}" ng-repeat="c in asistencia.cursos">
       <md-content class="md-padding">
         <!-- <md-list-item>
@@ -82,7 +82,7 @@
           <p flex="10" align="center"> {{ int.ts }} </p>
           <p flex="10" align="center"> {{ int.tt }} </p>
           <!-- <div flex="10" align="center" ng-if="$index > 0"> <div style="height: 25px;background-color: green;" flex layout="row" layout-align="center center"><span style="color:white;">{{int.porcentaje}}%</span></div> </div> -->
-          <div flex="10" align="center" ng-if="$index > 0"> <md-progress-linear md-mode="determinate" value="{{int.porcentaje}}"></md-progress-linear> 25% </div>
+          <div flex="10" align="center" ng-if="$index > 0"> <md-progress-linear md-mode="determinate" value="{{int.porcentaje}}"></md-progress-linear> {{int.porcentaje}}% </div>
           <p flex="10" align="center" ng-if="$index == 0"> {{int.porcentaje}} </p>
           <!-- <p></p> -->
         </md-list-item>
@@ -90,4 +90,7 @@
       </md-content>
     </md-tab>
   </md-tabs>
+  <div ng-show="asistencia.loading" flex layout="column" layout-align="center center">
+    <md-progress-circular md-diameter="96" flex style="padding-top:500px;"></md-progress-circular>
+  </div>
 </md-content>
