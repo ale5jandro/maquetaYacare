@@ -6,7 +6,7 @@
     config.$inject = ['$stateProvider', '$urlRouterProvider'];
     function config($stateProvider, $urlRouterProvider) {
       // For any unmatched url, redirect to /state1
-      $urlRouterProvider.otherwise("/404");
+      $urlRouterProvider.otherwise("/miscursos");
       $stateProvider
       .state('404', {
         url: "/404",
