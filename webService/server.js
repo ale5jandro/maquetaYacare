@@ -158,7 +158,22 @@ app.get('/busqueda', function(req, res){
   res.send(array);
 });
 
+app.get('/todo', function function_name(argument) {
 
+
+
+  var curso1={
+    label: "1A",
+    integrantes: [{nombre:'Abbondanzieri, Roberto', edad: 18, dni:35666999, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 23, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25, sanciond: "1/2", sanciont: "9", nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", pt3: 6, pg: '6.75'}, {nombre:'Waters, Roger', edad: 17, dni:35777999, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 25, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25, sanciond: "0", sanciont: "3", nt1: 6, nt2:5, nt3: 8, pc: 5, nt: 7, pt: 8, gt8: 8, pta: "6.3", pt3: 5, pg: '6.90'}, {nombre:'Connor, Sara', edad: 18, dni:34775999, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 23, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25, sanciond: "0", sanciont: "4", nt1: 8, nt2:5, nt3: 6, pc: 9, nt: 5, pt: 8, gt8: 1, pta: "9.6", pt3: 5, pg: '8.75'}, {nombre:'Zaballeta, Norma', edad: 17, dni:35666123, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 33, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25, sanciond: "0", sanciont: "11", nt1: 7, nt2:9, nt3: 6, pc: 6, nt: 2, pt: 6, gt8: 6, pta: "9.8", pt3: 9, pg: '5.95'},
+  {nombre:'Guevara, Ernesto', edad: 16, dni:35456999, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 73, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25, sanciond: "1/2", sanciont: "7", nt1: 9, nt2:5, nt3: 5, pc: 3, nt: 6, pt: 4, gt8: 8, pta: "6.6", pt3: 5, pg: '6.65'}, {nombre:'Riquelme, Juan', edad: 17, dni:35789999, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 23, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25, sanciond: "1/2", sanciont: "8", nt1: 6, nt2:3, nt3: 3, pc: 9, nt: 6, pt: 2, gt8: 9, pta: "8.9", pt3: 6, pg: '9.75'}, {nombre:'De medici, Monica', edad: 17, dni:36666999, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 23, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25, sanciond: "0", sanciont: "12", nt1: 4, nt2:6, nt3: 7, pc: 6, nt: 4, pt: 5, gt8: 9, pta: "6.6", pt3: 3, pg: '7.84'}, {nombre:'Rosales, Mauricio', edad: 19, dni:33666999, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 23, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25, sanciond: "0", sanciont: "15", nt1: 1, nt2:3, nt3: 9, pc: 3, nt: 1, pt: 8, gt8: 4, pta: "6.9", pt3: 8, pg: '6.12'}, {nombre:'Perez, Armando', edad: 18, dni:35456789, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 23, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25, sanciond: "0", sanciont: "15.5", nt1: 9, nt2:5, nt3: 7, pc: 6, nt: 8, pt: 5.6, gt8: 7.6, pta: "6.5", pt3: 1, pg: '8.06'}, {nombre:'Garcia, Carlos', edad: 18, dni:36666759, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 26, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25, sanciond: "1/2", sanciont: "6.5", nt1: 6, nt2:5, nt3: 4, pc: 7, nt: 9, pt: 10, gt8: 2, pta: "6.6", pt3: 4, pg: '4.75'},
+  {nombre:'Loyd, Guillermo', edad: 16, dni:39885299, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 63, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25, sanciond: "0", sanciont: "17", nt1: 4, nt2:8, nt3: 4, pc: 6, nt: 4, pt: 7, gt8: 9, pta: "5.9", pt3: 3, pg: '4.95'}, {nombre:'Vilas, Nicolas', edad: 18, dni:35666456, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 13, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25, sanciond: "0", sanciont: "11", nt1: 1, nt2:2, nt3: 3, pc: 4, nt: 5, pt: 6, gt8: 7, pta: "5.9", pt3: 4, pg: '2.75'}, {nombre:'Curie, Maria', edad: 17, dni:35789299, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 93, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25, sanciond: "0", sanciont: "16.5", nt1: 4, nt2:5, nt3: 6, pc: 7, nt: 8, pt: 9, gt8: 10, pta: "7.4", pt3: 5, pg: '8.7'}, {nombre:'Sosa, Emiliano', edad: 18, dni:35666999, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 23, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25, sanciond: "1/2", sanciont: "9", nt1: 3, nt2:4, nt3: 6, pc: 8, nt: 10, pt: 1, gt8: 3, pta: "7.5", pt3: 9, pg: '6.75'}, {nombre:'ale, ale', edad: 18, dni:35666999, falta: "0", faltaAcumulada: "6.25", presente: true, banco: 23, tj: 10, ti: 3, ts: 5, tt: 19, porcentaje: 25, sanciond: "1/2", sanciont: "9", nt1: 1, nt2:3, nt3: 9, pc: 6, nt: 6, pt: 8, gt8: 10, pta: "6.6", pt3: 6, pg: '6.75'}]
+  }
+
+});
+
+
+
+//no hace lo q tiene q hacer, la cambie para q sirviera
 var findFirstOccurrence = function(array, property, value){
   var re = new RegExp(value, 'ig');
   var array2 = [];
@@ -170,6 +185,9 @@ var findFirstOccurrence = function(array, property, value){
   }
   return array2;
 }
+
+
+
 
 
 var ser = app.listen(3023);

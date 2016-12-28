@@ -4,9 +4,41 @@ var url = require('url');
 var RedisStore = require('connect-redis')(session);
 var express = require('express');
 var path = require('path');
+var winston = require('winston');
 request.debug=false;
 
 var app = express();
+
+winston.add(
+  winston.transports.File, {
+    filename: 'loggggggggg.log',
+    level: 'info',
+    // json: true,
+    eol: '\n', // for Windows, or `eol: ‘n’,` for *NIX OSs
+    timestamp: true,
+  }
+)
+//
+// var logger = new (winston.Logger)({
+//   transports: [
+//     new (winston.transports.File)({
+//       filename: 'loggggggggg.log',
+//       timestamp: function() {
+//         return Date.now();
+//       },
+//       formatter: function(options) {
+//         // Return string will be passed to logger.
+//         return options.timestamp() +' '+ options.level.toUpperCase() +' '+ (options.message ? options.message : '') +
+//           (options.meta && Object.keys(options.meta).length ? '\n\t'+ JSON.stringify(options.meta) : '' );
+//       }
+//     })
+//   ]
+// });
+// logger.info('Data to log.');
+
+
+winston.log('info', 'Hello log files!')
+winston.info('Hello again log files!')
 
 
 
@@ -69,6 +101,12 @@ app.use(logMiddleware());
 
 app.use(function(req, res, next) {
 //loguear todo
+  // logger.log('info', '%s %s %s', req.headers.host, req.method, req.url)
+  var a = "ale"
+  winston.log('info', {host: req.headers.host, url: req.url, method: req.method})
+  // winston.log('info', req.headers);
+  // winston.log('info', req.url);
+  // winston.log('info', req.method);
   next();
 });
 
